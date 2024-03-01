@@ -4,6 +4,7 @@ namespace JobMetric\BanIp\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use JobMetric\BanIp\Enums\TableBanIpFieldTypeEnum;
 use JobMetric\BanIp\Rules\BanIpExistRule;
 
 class StoreBanIpRequest extends FormRequest
@@ -36,7 +37,7 @@ class StoreBanIpRequest extends FormRequest
                 'string',
                 new BanIpExistRule($type)
             ],
-            'type' => 'string',
+            'type' => 'string|in:' . implode(',', TableBanIpFieldTypeEnum::values()),
             'reason' => 'string',
             'banned_at' => 'date',
             'expired_at' => 'date|after:banned_at'
