@@ -31,7 +31,7 @@ class BanIpExistRule implements ValidationRule
             return;
         }
 
-        if (!BanIp::query()->where('ip', $value)->where('type', $this->type)->exists()) {
+        if (BanIp::query()->where('ip', $value)->where('type', $this->type)->exists()) {
             $fail(__('ban-ip::base.validation.ban_ip_exist', [
                 'attribute' => $attribute,
                 'ip' => $value,
