@@ -34,12 +34,12 @@ return new class extends Migration {
              * The reason field is used to store the reason for banning the user.
              */
 
-            $table->timestamp('banned_at')->nullable();
+            $table->dateTime('banned_at')->nullable();
             /**
              * The banned_at field is used to store the date and time the user was banned.
              */
 
-            $table->timestamp('expired_at')->nullable();
+            $table->dateTime('expired_at')->nullable();
             /**
              * The expired_at field is used to store the date and time the user's ban will expire.
              */
