@@ -39,6 +39,7 @@ class StoreBanIpRequest extends FormRequest
             ],
             'type' => 'string|in:' . implode(',', TableBanIpFieldTypeEnum::values()),
             'reason' => 'string|nullable',
+            'banned_at' => 'date|nullable|sometimes',
             'expired_at' => 'date|after:banned_at|nullable'
         ];
     }
