@@ -26,7 +26,7 @@ return [
     */
 
     "tables" => [
-        'ban_Ip' => 'ban_ips'
+        'ban_ip' => 'ban_ips'
     ],
 
 ];
