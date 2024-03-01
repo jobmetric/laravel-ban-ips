@@ -39,7 +39,7 @@ class StoreBanIpRequest extends FormRequest
             'type' => 'string',
             'reason' => 'string',
             'banned_at' => 'date',
-            'expired_at' => 'date|after:banned_at',
+            'expired_at' => 'date|after:banned_at'
         ];
     }
 
