@@ -5,6 +5,7 @@ namespace JobMetric\BanIp;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use JobMetric\BanIp\Events\BanIpDeleteEvent;
 use JobMetric\BanIp\Events\BanIpStoreEvent;
 use JobMetric\BanIp\Events\BanIpUpdateEvent;
 use JobMetric\BanIp\Http\Requests\StoreBanIpRequest;
@@ -115,7 +116,7 @@ class BanIp
             }
 
             if (array_key_exists('banned_at', $data)) {
-                if($data['banned_at'] > (array_key_exists('expired_at', $data) ? $data['expired_at'] : $ban_ip->expired_at)) {
+                if ($data['banned_at'] > (array_key_exists('expired_at', $data) ? $data['expired_at'] : $ban_ip->expired_at)) {
                     return [
                         'ok' => false,
                         'message' => trans('ban-ip::base.validation.errors'),
@@ -129,7 +130,7 @@ class BanIp
             }
 
             if (array_key_exists('expired_at', $data)) {
-                if($data['expired_at'] < (array_key_exists('banned_at', $data) ? $data['banned_at'] : $ban_ip->banned_at)) {
+                if ($data['expired_at'] < (array_key_exists('banned_at', $data) ? $data['banned_at'] : $ban_ip->banned_at)) {
                     return [
                         'ok' => false,
                         'message' => trans('ban-ip::base.validation.errors'),
@@ -150,6 +151,41 @@ class BanIp
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.updated'),
                 'data' => $ban_ip
+            ];
+        });
+    }
+
+    /**
+     * Delete the specified ban ip.
+     *
+     * @param int $ban_ip_id
+     * @return array
+     */
+    public function delete(int $ban_ip_id): array
+    {
+        return DB::transaction(function () use ($ban_ip_id) {
+            /**
+             * @var BanIpModel $ban_ip
+             */
+            $ban_ip = BanIpModel::query()->where('id', $ban_ip_id)->first();
+
+            if (!$ban_ip) {
+                return [
+                    'ok' => false,
+                    'message' => trans('ban-ip::base.validation.errors'),
+                    'errors' => [
+                        trans('ban-ip::base.validation.ban_ip_not_found')
+                    ]
+                ];
+            }
+
+            event(new BanIpDeleteEvent($ban_ip));
+
+            $ban_ip->delete();
+
+            return [
+                'ok' => true,
+                'message' => trans('ban-ip::base.messages.deleted')
             ];
         });
     }

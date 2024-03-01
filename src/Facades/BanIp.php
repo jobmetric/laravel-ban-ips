@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static array store(array $data)
  * @method static array update(int $ban_ip_id, array $data = [])
+ * @method static array delete(int $ban_ip_id)
  */
 class BanIp extends Facade
 {
