@@ -27,7 +27,7 @@ class UpdateBanIpRequest extends FormRequest
             'type' => 'string|in:' . implode(',', TableBanIpFieldTypeEnum::values()) . '|sometimes',
             'reason' => 'string|nullable|sometimes',
             'banned_at' => 'date|nullable|sometimes',
-            'expired_at' => 'date|after:banned_at|nullable|sometimes'
+            'expired_at' => 'date|nullable|sometimes'
         ];
     }
 }

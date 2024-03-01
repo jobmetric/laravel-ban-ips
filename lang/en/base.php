@@ -16,6 +16,7 @@ return [
         'errors' => 'Validation errors occurred.',
         'ban_ip_exist' => 'The :attribute (:ip) exist in type (:type).',
         'ban_ip_not_found' => 'The ban ip not found.',
+        'banned_at_bigger_expired_at' => 'banned time bigger than expired time',
     ],
 
     'messages' => [
