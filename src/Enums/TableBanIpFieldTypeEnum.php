@@ -8,7 +8,7 @@ use JobMetric\PackageCore\Enums\EnumToArray;
  * @method static HACKER()
  * @method static SPAMMER()
  * @method static BOT()
- * @method static OTHER()
+ * @method static ANOTHER()
  */
 enum TableBanIpFieldTypeEnum : string {
     use EnumToArray;
@@ -16,5 +16,5 @@ enum TableBanIpFieldTypeEnum : string {
     case HACKER = 'hacker';
     case SPAMMER = 'spammer';
     case BOT = 'bot';
-    case OTHER = 'other';
+    case ANOTHER = 'another';
 }
