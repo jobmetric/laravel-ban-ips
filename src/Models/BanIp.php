@@ -38,10 +38,10 @@ class BanIp extends Model
      */
     protected $casts = [
         'ip' => 'string',
-        'type' => 'integer',
+        'type' => 'string',
         'reason' => 'string',
-        'banned_at' => 'integer',
-        'expired_at' => 'boolean'
+        'banned_at' => 'datetime',
+        'expired_at' => 'datetime'
     ];
 
     public function getTable()
