@@ -129,6 +129,16 @@ class BanIp
             }
 
             if (array_key_exists('expired_at', $data)) {
+                if($data['expired_at'] < (array_key_exists('banned_at', $data) ? $data['banned_at'] : $ban_ip->banned_at)) {
+                    return [
+                        'ok' => false,
+                        'message' => trans('ban-ip::base.validation.errors'),
+                        'errors' => [
+                            trans('ban-ip::base.validation.expired_at_bigger_banned_at')
+                        ]
+                    ];
+                }
+
                 $ban_ip->expired_at = $data['expired_at'];
             }
 
