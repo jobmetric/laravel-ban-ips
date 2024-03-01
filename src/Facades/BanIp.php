@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @see \JobMetric\BanIp\BanIp
  *
  * @method static array store(array $data)
+ * @method static array update(int $ban_ip_id, array $data = [])
  */
 class BanIp extends Facade
 {
