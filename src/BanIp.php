@@ -54,8 +54,8 @@ class BanIp
             $ban_ip->ip = $data['ip'];
             $ban_ip->type = $data['type'];
             $ban_ip->reason = $data['reason'] ?? null;
-            $ban_ip->banned_at = $data['banned_at'] ?? true;
-            $ban_ip->expired_at = $data['expired_at'] ?? true;
+            $ban_ip->banned_at = $data['banned_at'] ?? null;
+            $ban_ip->expired_at = $data['expired_at'] ?? null;
             $ban_ip->save();
 
             event(new BanIpStoreEvent($ban_ip, $data));

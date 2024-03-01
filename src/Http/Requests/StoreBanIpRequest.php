@@ -38,9 +38,9 @@ class StoreBanIpRequest extends FormRequest
                 new BanIpExistRule($type)
             ],
             'type' => 'string|in:' . implode(',', TableBanIpFieldTypeEnum::values()),
-            'reason' => 'string',
-            'banned_at' => 'date',
-            'expired_at' => 'date|after:banned_at'
+            'reason' => 'string|nullable',
+            'banned_at' => 'date|nullable',
+            'expired_at' => 'date|after:banned_at|nullable'
         ];
     }
 
