@@ -40,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "JobMetric\\BanIp\\CategoryServiceProvider"
+                "JobMetric\\BanIp\\BanIpServiceProvider"
             ],
             "aliases": {
                 "BanIp": "JobMetric\\BanIp\\Facades\\BanIp"
