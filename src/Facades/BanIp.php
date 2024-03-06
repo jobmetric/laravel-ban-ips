@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Illuminate\Database\Eloquent\Collection all(array $filter = [])
  * @method static array store(array $data)
  * @method static array update(int $ban_ip_id, array $data = [])
- * @method static array delete(int $ban_ip_id)
+ * @method static bool deleteExpired()
  */
 class BanIp extends Facade
 {

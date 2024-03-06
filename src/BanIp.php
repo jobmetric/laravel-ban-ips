@@ -233,4 +233,29 @@ class BanIp
             ];
         });
     }
+
+    /**
+     * Delete the expired ban ip.
+     *
+     * @return bool
+     */
+    public function deleteExpired(): bool
+    {
+        return DB::transaction(function () {
+            $ban_ips = BanIpModel::query()->where('expired_at', '<=', now()->format('Y-m-d H:i:s'))->get();
+
+            if($ban_ips->count() > 0) {
+                foreach ($ban_ips as $ban_ip) {
+                    /**
+                     * @var BanIpModel $ban_ip
+                     */
+                    $this->delete($ban_ip->id);
+                }
+
+                return true;
+            }
+
+            return false;
+        });
+    }
 }

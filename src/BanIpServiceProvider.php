@@ -22,6 +22,7 @@ class BanIpServiceProvider extends PackageCoreServiceProvider
             ->hasConfig()
             ->hasMigration()
             ->hasTranslation()
+            ->registerCommand(Commands\BanIpRemove::class)
             ->registerClass('BanIp', BanIp::class);
     }
 }
