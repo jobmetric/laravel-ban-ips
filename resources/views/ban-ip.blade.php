@@ -1414,13 +1414,13 @@
             </g>
             <text opacity="0.6" x="15" y="257" fill="#000" font-family="Viga" font-size="25">{{ __('ban-ip::base.view.description') }}
                 <tspan x="35" y="292" class="timer"></tspan>
-                <tspan x="100" y="357" fill="#000" font-size="65">499</tspan>
+                <tspan x="100" y="357" fill="#000" font-size="65">403</tspan>
                 <tspan x="93" y="381.2" fill="#000" font-size="15">{{ $reason }}</tspan>
             </text>
 
             <text x="15" y="255" fill="#6BA184" font-family="Viga" font-size="25">{{ __('ban-ip::base.view.description') }}
                 <tspan x="35" y="290" class="timer"></tspan>
-                <tspan x="100" y="355" fill="#BF3E73" font-size="65">499</tspan>
+                <tspan x="100" y="355" fill="#BF3E73" font-size="65">403</tspan>
                 <tspan x="93" y="380" fill="#6BA184" font-size="15">{{ $reason }}</tspan>
             </text>
         </g>
