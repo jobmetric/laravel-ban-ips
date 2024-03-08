@@ -26,4 +26,9 @@ return [
         'deleted' => 'The ban ip was deleted successfully.',
     ],
 
+    'view' => [
+        'title' => 'Ban Ip',
+        'description' => 'No way!'
+    ]
+
 ];
