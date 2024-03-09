@@ -92,7 +92,7 @@ class BanIpFactory extends Factory
      *
      * @return static
      */
-    public function setStatus(string $expired_at): static
+    public function setExpiredAt(string $expired_at): static
     {
         return $this->state(fn(array $attributes) => [
             'expired_at' => $expired_at
