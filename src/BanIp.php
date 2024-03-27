@@ -87,13 +87,14 @@ class BanIp
     {
         $validator = Validator::make($data, (new StoreBanIpRequest)->setData($data)->rules());
         if ($validator->fails()) {
-            $errors = $validator->errors()->all();
-
             return [
                 'ok' => false,
                 'message' => trans('ban-ip::base.validation.errors'),
-                'errors' => $errors
+                'errors' => $validator->errors()->all(),
+                'status' => 422
             ];
+        } else {
+            $data = $validator->validated();
         }
 
         return DB::transaction(function () use ($data) {
@@ -110,7 +111,8 @@ class BanIp
             return [
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.created'),
-                'data' => $ban_ip
+                'data' => $ban_ip,
+                'status' => 201
             ];
         });
     }
@@ -126,13 +128,14 @@ class BanIp
     {
         $validator = Validator::make($data, (new UpdateBanIpRequest)->rules());
         if ($validator->fails()) {
-            $errors = $validator->errors()->all();
-
             return [
                 'ok' => false,
                 'message' => trans('ban-ip::base.validation.errors'),
-                'errors' => $errors
+                'errors' => $validator->errors()->all(),
+                'status' => 422
             ];
+        } else {
+            $data = $validator->validated();
         }
 
         return DB::transaction(function () use ($ban_ip_id, $data) {
@@ -147,7 +150,8 @@ class BanIp
                     'message' => trans('ban-ip::base.validation.errors'),
                     'errors' => [
                         trans('ban-ip::base.validation.ban_ip_not_found')
-                    ]
+                    ],
+                    'status' => 401
                 ];
             }
 
@@ -166,7 +170,8 @@ class BanIp
                         'message' => trans('ban-ip::base.validation.errors'),
                         'errors' => [
                             trans('ban-ip::base.validation.banned_at_bigger_expired_at')
-                        ]
+                        ],
+                        'status' => 422
                     ];
                 }
 
@@ -180,7 +185,8 @@ class BanIp
                         'message' => trans('ban-ip::base.validation.errors'),
                         'errors' => [
                             trans('ban-ip::base.validation.expired_at_bigger_banned_at')
-                        ]
+                        ],
+                        'status' => 422
                     ];
                 }
 
@@ -194,7 +200,8 @@ class BanIp
             return [
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.updated'),
-                'data' => $ban_ip
+                'data' => $ban_ip,
+                'status' => 200
             ];
         });
     }
@@ -219,7 +226,8 @@ class BanIp
                     'message' => trans('ban-ip::base.validation.errors'),
                     'errors' => [
                         trans('ban-ip::base.validation.ban_ip_not_found')
-                    ]
+                    ],
+                    'status' => 401
                 ];
             }
 
@@ -229,7 +237,8 @@ class BanIp
 
             return [
                 'ok' => true,
-                'message' => trans('ban-ip::base.messages.deleted')
+                'message' => trans('ban-ip::base.messages.deleted'),
+                'status' => 200
             ];
         });
     }
