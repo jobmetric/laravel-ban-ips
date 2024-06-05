@@ -50,7 +50,7 @@ class BanIpFactory extends Factory
      *
      * @return static
      */
-    public function setParent(string $type): static
+    public function setType(string $type): static
     {
         return $this->state(fn(array $attributes) => [
             'type' => $type
