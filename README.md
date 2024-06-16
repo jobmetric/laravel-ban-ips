@@ -115,6 +115,15 @@ use JobMetric\BanIp\Facades\BanIp;
 BanIp::deleteExpired();
 ```
 
+## Helper Functions
+
+This package contains several helper functions that you can use as follows:
+
+- `storeBanIp`: This function is used to store a ban ip.
+- `updateBanIp`: This function is used to update a ban ip.
+- `deleteBanIp`: This function is used to delete a ban ip.
+- `deleteExpiredBanIp`: This function is used to delete expired ban ip.
+
 ## Rules
 
 There are some rules for using this package:
