@@ -12,6 +12,7 @@ use JobMetric\BanIp\Events\BanIpStoreEvent;
 use JobMetric\BanIp\Events\BanIpUpdateEvent;
 use JobMetric\BanIp\Http\Requests\StoreBanIpRequest;
 use JobMetric\BanIp\Http\Requests\UpdateBanIpRequest;
+use JobMetric\BanIp\Http\Resources\BanIpResource;
 use JobMetric\BanIp\Models\BanIp as BanIpModel;
 use Spatie\QueryBuilder\QueryBuilder;
 use Throwable;
@@ -111,7 +112,7 @@ class BanIp
             return [
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.created'),
-                'data' => $ban_ip,
+                'data' => BanIpResource::make($ban_ip),
                 'status' => 201
             ];
         });
@@ -200,7 +201,7 @@ class BanIp
             return [
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.updated'),
-                'data' => $ban_ip,
+                'data' => BanIpResource::make($ban_ip),
                 'status' => 200
             ];
         });
@@ -233,11 +234,14 @@ class BanIp
 
             event(new BanIpDeleteEvent($ban_ip));
 
+            $data = BanIpResource::make($ban_ip);
+
             $ban_ip->delete();
 
             return [
                 'ok' => true,
                 'message' => trans('ban-ip::base.messages.deleted'),
+                'data' => $data,
                 'status' => 200
             ];
         });
