@@ -151,11 +151,11 @@ This package contains several commands that you can use as follows
 
 This package contains several events for which you can write a listener as follows
 
-| Event              | Description                                        |
-|--------------------|----------------------------------------------------|
-| `BanIpStoredEvent` | This event is called after storing the ban ip.     |
-| `BanIpUpdateEvent` | This event is called after forgetting the ban ip.  |
-| `BanIpDeleteEvent` | This event is called after forgetting the ban ip.  |
+| Event              | Description                                     |
+|--------------------|-------------------------------------------------|
+| `BanIpStoredEvent` | This event is called after storing the ban ip.  |
+| `BanIpUpdateEvent` | This event is called after updating the ban ip. |
+| `BanIpDeleteEvent` | This event is called after delete the ban ip.   |
 
 ## Contributing
 
