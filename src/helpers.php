@@ -32,6 +32,20 @@ if (!function_exists('updateBanIp')) {
     }
 }
 
+if (!function_exists('deleteBanIp')) {
+    /**
+     * Get the BanIp instance.
+     *
+     * @param int $ban_ip_id
+     *
+     * @return array
+     */
+    function deleteBanIp(int $ban_ip_id): array
+    {
+        return BanIpFacade::delete($ban_ip_id);
+    }
+}
+
 if (!function_exists('deleteExpiredBanIp')) {
     /**
      * Get the BanIp instance.
