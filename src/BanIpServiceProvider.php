@@ -2,13 +2,14 @@
 
 namespace JobMetric\BanIp;
 
-use JobMetric\BanIp\Facades\BanIp as BanIpFacade;
+use JobMetric\BanIp\Models\BanIp as BanIpModels;
 use JobMetric\PackageCore\Exceptions\ConsoleKernelFileNotFoundException;
 use JobMetric\PackageCore\Exceptions\MigrationFolderNotFoundException;
 use JobMetric\PackageCore\Exceptions\RegisterClassTypeNotFoundException;
 use JobMetric\PackageCore\Exceptions\ViewFolderNotFoundException;
 use JobMetric\PackageCore\PackageCore;
 use JobMetric\PackageCore\PackageCoreServiceProvider;
+use Throwable;
 
 class BanIpServiceProvider extends PackageCoreServiceProvider
 {
@@ -33,13 +34,19 @@ class BanIpServiceProvider extends PackageCoreServiceProvider
             ->registerClass('BanIp', BanIp::class);
     }
 
+    /**
+     * after boot package
+     *
+     * @return void
+     * @throws Throwable
+     */
     public function afterBootPackage(): void
     {
         if (checkDatabaseConnection() && !app()->runningInConsole() && !app()->runningUnitTests()) {
-            $result = BanIpFacade::all([
-                ['ip', request()->ip()],
-                ['expired_at', '>', now()->format('Y-m-d H:i:s')]
-            ]);
+            $result = BanIpModels::query()
+                ->where('ip', '=', request()->ip())
+                ->where('expired_at', '>', now()->format('Y-m-d H:i:s'))
+                ->get();
 
             if ($result->count()) {
                 $banIp = $result->first();
