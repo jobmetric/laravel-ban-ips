@@ -90,7 +90,7 @@ class BanIp
         if ($validator->fails()) {
             return [
                 'ok' => false,
-                'message' => trans('ban-ip::base.validation.errors'),
+                'message' => trans('package-core::base.validation.errors'),
                 'errors' => $validator->errors()->all(),
                 'status' => 422
             ];
@@ -131,7 +131,7 @@ class BanIp
         if ($validator->fails()) {
             return [
                 'ok' => false,
-                'message' => trans('ban-ip::base.validation.errors'),
+                'message' => trans('package-core::base.validation.errors'),
                 'errors' => $validator->errors()->all(),
                 'status' => 422
             ];
@@ -148,7 +148,7 @@ class BanIp
             if (!$ban_ip) {
                 return [
                     'ok' => false,
-                    'message' => trans('ban-ip::base.validation.errors'),
+                    'message' => trans('package-core::base.validation.errors'),
                     'errors' => [
                         trans('ban-ip::base.validation.ban_ip_not_found')
                     ],
@@ -168,7 +168,7 @@ class BanIp
                 if ($data['banned_at'] > (array_key_exists('expired_at', $data) ? $data['expired_at'] : $ban_ip->expired_at)) {
                     return [
                         'ok' => false,
-                        'message' => trans('ban-ip::base.validation.errors'),
+                        'message' => trans('package-core::base.validation.errors'),
                         'errors' => [
                             trans('ban-ip::base.validation.banned_at_bigger_expired_at')
                         ],
@@ -183,7 +183,7 @@ class BanIp
                 if ($data['expired_at'] < (array_key_exists('banned_at', $data) ? $data['banned_at'] : $ban_ip->banned_at)) {
                     return [
                         'ok' => false,
-                        'message' => trans('ban-ip::base.validation.errors'),
+                        'message' => trans('package-core::base.validation.errors'),
                         'errors' => [
                             trans('ban-ip::base.validation.expired_at_bigger_banned_at')
                         ],
@@ -224,7 +224,7 @@ class BanIp
             if (!$ban_ip) {
                 return [
                     'ok' => false,
-                    'message' => trans('ban-ip::base.validation.errors'),
+                    'message' => trans('package-core::base.validation.errors'),
                     'errors' => [
                         trans('ban-ip::base.validation.ban_ip_not_found')
                     ],

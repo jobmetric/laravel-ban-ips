@@ -12,23 +12,22 @@ return [
     |
     */
 
-    'validation' => [
-        'errors' => 'Validation errors occurred.',
-        'ban_ip_exist' => 'The :attribute (:ip) exist in type (:type).',
-        'ban_ip_not_found' => 'The ban ip not found.',
-        'banned_at_bigger_expired_at' => 'Banned time is greater than expired time.',
-        'expired_at_bigger_banned_at' => 'The expired time is less than the banned time.',
+    "validation" => [
+        "ban_ip_exist" => "The :attribute (:ip) exist in type (:type).",
+        "ban_ip_not_found" => "The ban ip not found.",
+        "banned_at_bigger_expired_at" => "Banned time is greater than expired time.",
+        "expired_at_bigger_banned_at" => "The expired time is less than the banned time.",
     ],
 
-    'messages' => [
-        'created' => 'The ban ip was created successfully.',
-        'updated' => 'The ban ip was updated successfully.',
-        'deleted' => 'The ban ip was deleted successfully.',
+    "messages" => [
+        "created" => "The ban ip was created successfully.",
+        "updated" => "The ban ip was updated successfully.",
+        "deleted" => "The ban ip was deleted successfully.",
     ],
 
-    'view' => [
-        'title' => 'Ban Ip',
-        'description' => 'No way!'
+    "view" => [
+        "title" => "Ban Ip",
+        "description" => "No way!"
     ]
 
 ];
